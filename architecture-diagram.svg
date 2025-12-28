@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define styles -->
+  <defs>
+    <style>
+      .title { font: bold 24px sans-serif; fill: #232F3E; }
+      .subtitle { font: 16px sans-serif; fill: #545B64; }
+      .label { font: 12px sans-serif; fill: #232F3E; }
+      .small-label { font: 10px sans-serif; fill: #545B64; }
+      .aws-orange { fill: #FF9900; stroke: #FF9900; }
+      .aws-blue { fill: #146EB4; stroke: #146EB4; }
+      .vpc-purple { fill: #7B68EE; stroke: #7B68EE; }
+      .public-subnet { fill: #E8F5E9; stroke: #4CAF50; stroke-width: 2; }
+      .private-subnet { fill: #FFF3E0; stroke: #FF9800; stroke-width: 2; }
+      .database-subnet { fill: #E3F2FD; stroke: #2196F3; stroke-width: 2; }
+      .service-box { fill: white; stroke: #232F3E; stroke-width: 2; rx: 5; }
+      .connection { stroke: #545B64; stroke-width: 1.5; fill: none; stroke-dasharray: 5,3; }
+      .arrow { fill: #545B64; }
+    </style>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title" text-anchor="middle">AWS Web Application Infrastructure</text>
+  <text x="600" y="50" class="subtitle" text-anchor="middle">Highly Available Multi-AZ Architecture</text>
+  
+  <!-- AWS Cloud Container -->
+  <rect x="50" y="70" width="1100" height="800" class="aws-orange" fill-opacity="0.05" stroke-width="3" rx="10"/>
+  <text x="100" y="95" class="label aws-orange">AWS Region (us-east-1)</text>
+  
+  <!-- VPC Container -->
+  <rect x="80" y="120" width="1040" height="720" class="vpc-purple" fill-opacity="0.05" stroke-width="2" rx="8"/>
+  <text x="110" y="145" class="label vpc-purple">VPC (10.0.0.0/16)</text>
+  
+  <!-- Internet Gateway -->
+  <rect x="500" y="160" width="200" height="40" class="service-box"/>
+  <text x="600" y="185" class="label" text-anchor="middle">Internet Gateway</text>
+  
+  <!-- CloudFront CDN -->
+  <rect x="300" y="160" width="150" height="40" class="service-box"/>
+  <text x="375" y="185" class="label" text-anchor="middle">CloudFront CDN</text>
+  
+  <!-- Application Load Balancer -->
+  <rect x="475" y="230" width="250" height="50" class="service-box aws-orange" fill-opacity="0.2"/>
+  <text x="600" y="260" class="label" text-anchor="middle">Application Load Balancer</text>
+  
+  <!-- Availability Zone A -->
+  <g id="az-a">
+    <rect x="100" y="310" width="320" height="480" fill="#F5F5F5" stroke="#999" stroke-width="1" stroke-dasharray="5,5" rx="5"/>
+    <text x="110" y="330" class="label">Availability Zone A (us-east-1a)</text>
+    
+    <!-- Public Subnet A -->
+    <rect x="120" y="350" width="280" height="80" class="public-subnet" rx="3"/>
+    <text x="260" y="370" class="label" text-anchor="middle">Public Subnet</text>
+    <text x="260" y="385" class="small-label" text-anchor="middle">10.0.1.0/24</text>
+    <rect x="220" y="395" width="80" height="25" class="service-box"/>
+    <text x="260" y="410" class="small-label" text-anchor="middle">NAT Gateway</text>
+    
+    <!-- Private Subnet A -->
+    <rect x="120" y="450" width="280" height="120" class="private-subnet" rx="3"/>
+    <text x="260" y="470" class="label" text-anchor="middle">Private Subnet</text>
+    <text x="260" y="485" class="small-label" text-anchor="middle">10.0.11.0/24</text>
+    
+    <!-- EC2 Instances -->
+    <rect x="150" y="500" width="100" height="50" class="service-box"/>
+    <text x="200" y="520" class="small-label" text-anchor="middle">EC2 Instance</text>
+    <text x="200" y="535" class="small-label" text-anchor="middle">Auto Scaling</text>
+    
+    <rect x="270" y="500" width="100" height="50" class="service-box"/>
+    <text x="320" y="520" class="small-label" text-anchor="middle">EC2 Instance</text>
+    <text x="320" y="535" class="small-label" text-anchor="middle">Auto Scaling</text>
+    
+    <!-- Database Subnet A -->
+    <rect x="120" y="590" width="280" height="180" class="database-subnet" rx="3"/>
+    <text x="260" y="610" class="label" text-anchor="middle">Database Subnet</text>
+    <text x="260" y="625" class="small-label" text-anchor="middle">10.0.21.0/24</text>
+    
+    <!-- RDS Primary -->
+    <rect x="180" y="650" width="160" height="80" class="service-box aws-blue" fill-opacity="0.2"/>
+    <text x="260" y="675" class="label" text-anchor="middle">RDS Primary</text>
+    <text x="260" y="695" class="small-label" text-anchor="middle">PostgreSQL 16.3</text>
+    <text x="260" y="710" class="small-label" text-anchor="middle">Multi-AZ</text>
+  </g>
+  
+  <!-- Availability Zone B -->
+  <g id="az-b">
+    <rect x="440" y="310" width="320" height="480" fill="#F5F5F5" stroke="#999" stroke-width="1" stroke-dasharray="5,5" rx="5"/>
+    <text x="450" y="330" class="label">Availability Zone B (us-east-1b)</text>
+    
+    <!-- Public Subnet B -->
+    <rect x="460" y="350" width="280" height="80" class="public-subnet" rx="3"/>
+    <text x="600" y="370" class="label" text-anchor="middle">Public Subnet</text>
+    <text x="600" y="385" class="small-label" text-anchor="middle">10.0.2.0/24</text>
+    <rect x="560" y="395" width="80" height="25" class="service-box"/>
+    <text x="600" y="410" class="small-label" text-anchor="middle">NAT Gateway</text>
+    
+    <!-- Private Subnet B -->
+    <rect x="460" y="450" width="280" height="120" class="private-subnet" rx="3"/>
+    <text x="600" y="470" class="label" text-anchor="middle">Private Subnet</text>
+    <text x="600" y="485" class="small-label" text-anchor="middle">10.0.12.0/24</text>
+    
+    <!-- EC2 Instances -->
+    <rect x="490" y="500" width="100" height="50" class="service-box"/>
+    <text x="540" y="520" class="small-label" text-anchor="middle">EC2 Instance</text>
+    <text x="540" y="535" class="small-label" text-anchor="middle">Auto Scaling</text>
+    
+    <rect x="610" y="500" width="100" height="50" class="service-box"/>
+    <text x="660" y="520" class="small-label" text-anchor="middle">EC2 Instance</text>
+    <text x="660" y="535" class="small-label" text-anchor="middle">Auto Scaling</text>
+    
+    <!-- Database Subnet B -->
+    <rect x="460" y="590" width="280" height="180" class="database-subnet" rx="3"/>
+    <text x="600" y="610" class="label" text-anchor="middle">Database Subnet</text>
+    <text x="600" y="625" class="small-label" text-anchor="middle">10.0.22.0/24</text>
+    
+    <!-- RDS Standby -->
+    <rect x="520" y="650" width="160" height="80" class="service-box aws-blue" fill-opacity="0.2"/>
+    <text x="600" y="675" class="label" text-anchor="middle">RDS Standby</text>
+    <text x="600" y="695" class="small-label" text-anchor="middle">PostgreSQL 16.3</text>
+    <text x="600" y="710" class="small-label" text-anchor="middle">Multi-AZ Replica</text>
+  </g>
+  
+  <!-- Availability Zone C -->
+  <g id="az-c">
+    <rect x="780" y="310" width="320" height="480" fill="#F5F5F5" stroke="#999" stroke-width="1" stroke-dasharray="5,5" rx="5"/>
+    <text x="790" y="330" class="label">Availability Zone C (us-east-1c)</text>
+    
+    <!-- Public Subnet C -->
+    <rect x="800" y="350" width="280" height="80" class="public-subnet" rx="3"/>
+    <text x="940" y="370" class="label" text-anchor="middle">Public Subnet</text>
+    <text x="940" y="385" class="small-label" text-anchor="middle">10.0.3.0/24</text>
+    <rect x="900" y="395" width="80" height="25" class="service-box"/>
+    <text x="940" y="410" class="small-label" text-anchor="middle">NAT Gateway</text>
+    
+    <!-- Private Subnet C -->
+    <rect x="800" y="450" width="280" height="120" class="private-subnet" rx="3"/>
+    <text x="940" y="470" class="label" text-anchor="middle">Private Subnet</text>
+    <text x="940" y="485" class="small-label" text-anchor="middle">10.0.13.0/24</text>
+    
+    <!-- EC2 Instance -->
+    <rect x="890" y="500" width="100" height="50" class="service-box"/>
+    <text x="940" y="520" class="small-label" text-anchor="middle">EC2 Instance</text>
+    <text x="940" y="535" class="small-label" text-anchor="middle">Auto Scaling</text>
+    
+    <!-- Database Subnet C -->
+    <rect x="800" y="590" width="280" height="180" class="database-subnet" rx="3"/>
+    <text x="940" y="610" class="label" text-anchor="middle">Database Subnet</text>
+    <text x="940" y="625" class="small-label" text-anchor="middle">10.0.23.0/24</text>
+    
+    <!-- Read Replica -->
+    <rect x="860" y="650" width="160" height="80" class="service-box aws-blue" fill-opacity="0.2"/>
+    <text x="940" y="675" class="label" text-anchor="middle">RDS Read Replica</text>
+    <text x="940" y="695" class="small-label" text-anchor="middle">PostgreSQL 16.3</text>
+    <text x="940" y="710" class="small-label" text-anchor="middle">(Production Only)</text>
+  </g>
+  
+  <!-- AWS Services Panel -->
+  <g id="aws-services">
+    <text x="100" y="820" class="label">AWS Services:</text>
+    
+    <!-- S3 -->
+    <rect x="200" y="800" width="80" height="30" class="service-box"/>
+    <text x="240" y="820" class="small-label" text-anchor="middle">S3 Buckets</text>
+    
+    <!-- CloudWatch -->
+    <rect x="300" y="800" width="80" height="30" class="service-box"/>
+    <text x="340" y="820" class="small-label" text-anchor="middle">CloudWatch</text>
+    
+    <!-- Secrets Manager -->
+    <rect x="400" y="800" width="100" height="30" class="service-box"/>
+    <text x="450" y="820" class="small-label" text-anchor="middle">Secrets Manager</text>
+    
+    <!-- KMS -->
+    <rect x="520" y="800" width="60" height="30" class="service-box"/>
+    <text x="550" y="820" class="small-label" text-anchor="middle">KMS</text>
+    
+    <!-- Route 53 -->
+    <rect x="600" y="800" width="80" height="30" class="service-box"/>
+    <text x="640" y="820" class="small-label" text-anchor="middle">Route 53</text>
+    
+    <!-- WAF -->
+    <rect x="700" y="800" width="60" height="30" class="service-box"/>
+    <text x="730" y="820" class="small-label" text-anchor="middle">WAF</text>
+  </g>
+  
+  <!-- Connection Lines -->
+  <!-- Internet to IGW -->
+  <line x1="600" y1="160" x2="600" y2="230" class="connection"/>
+  
+  <!-- ALB to Subnets -->
+  <line x1="500" y1="280" x2="260" y2="350" class="connection"/>
+  <line x1="600" y1="280" x2="600" y2="350" class="connection"/>
+  <line x1="700" y1="280" x2="940" y2="350" class="connection"/>
+  
+  <!-- Database Replication -->
+  <line x1="340" y1="690" x2="520" y2="690" class="connection" stroke="#2196F3" stroke-width="2"/>
+  <line x1="680" y1="690" x2="860" y2="690" class="connection" stroke="#2196F3" stroke-width="2"/>
+  
+  <!-- Arrow markers -->
+  <polygon points="595,225 600,230 605,225" class="arrow"/>
+  <polygon points="255,345 260,350 265,345" class="arrow"/>
+  <polygon points="595,345 600,350 605,345" class="arrow"/>
+  <polygon points="935,345 940,350 945,345" class="arrow"/>
+</svg>
