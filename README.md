@@ -1,5 +1,7 @@
 # AWS Web Application Infrastructure with Terraform
 
+### Exercise time: ~2.5-3 hrs
+
 ## 📋 Overview
 
 This repository contains a production-ready, highly available web application infrastructure on AWS, built using **Terraform 1.14.3** with the latest features including native testing framework, enhanced validation, and improved lifecycle management.
